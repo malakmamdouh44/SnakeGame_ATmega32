@@ -450,6 +450,6 @@ u8 gameLoop(void)
             snakeDraw();
         }
         frameCounter++;
-        _delay_ms(30);
+        _delay_ms(50);
     }
 }
