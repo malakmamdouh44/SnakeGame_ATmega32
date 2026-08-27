@@ -31,10 +31,10 @@
 #define DISPLAY_ON 				1
 // 0 --> off
 // 1 --> on
-#define CURSOR_DISPLAY 			1
+#define CURSOR_DISPLAY 			0
 // 0 --> off
 // 1 --> on
-#define CURSOR_BLINK 			1
+#define CURSOR_BLINK 			0
 //left to Right --> 1
 //Right to Left --> 0
 #define LCD_DATA_DIRECTION 		1
