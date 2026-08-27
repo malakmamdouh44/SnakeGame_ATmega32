@@ -31,7 +31,7 @@
 
 #define MAX_SNAKE_LENGTH     50
 
-
+//index in CGRAM
 #define SOLID_BLOCK         0   // Full block
 #define DIAMOND             1   // Diamond shape
 #define HEAD_RIGHT          2   // Snake head right
@@ -71,13 +71,14 @@ typedef enum {
     DIR_NONE
 } Direction;
 
+//SORTED BY SIZE TO AVOID MEMORY LEAK
 typedef struct {
     Position body[MAX_SNAKE_LENGTH];
-    u8 length;
+    u16 score;
     Direction nextDir;
     Direction currentDir;
+    u8 length;
     u8 isDead;
-    u16 score;
 } Snake;
 
 void gameInit(void);

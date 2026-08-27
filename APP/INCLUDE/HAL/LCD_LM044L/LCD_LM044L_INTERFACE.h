@@ -44,11 +44,14 @@ void HLCD_voidSendData(u8 A_u8Command);
 void HLCD_voidInit(void);
 void HLCD_voidSendString(u8 *A_Pu8String);
 void HLCD_voidClearDisplay(void);
-void HLCD_voidSendSpecialCharacter (u8 *A_pu8PatternArr, u8 A_u8PatternNumber,LCD_ROWS A_LcdRowNo,LCD_COLS A_LcdColNo );
 void HLCD_voidDisplayNumberUnsigned (u32 A_u32Number);
 void HLCD_voidDisplayNumberSigned (s32 A_s32Number);
 void HLCD_voidGoToPos (LCD_ROWS A_LcdRowNo,LCD_COLS A_LcdColNo);
 void HLCD_voidSendStringLine(u8 *A_Pu8String, LCD_ROWS row);
+
+void HLCD_voidCreateCustomCharacters(void);
+void HLCD_voidSendSpecialCharacter(u8 *A_pu8PatternArr, u8 A_u8PatternNumber);
+
 
 
 #endif /* INCLUDE_HAL_LCD_LM044L_LCD_LM044L_INTERFACE_H_ */

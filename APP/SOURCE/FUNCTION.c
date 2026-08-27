@@ -64,7 +64,6 @@ void snakeInit(void) //initializes data for each round
 
     SevenSegment_DisplayNumber(0);
 
-
     g_snake.body[0].x = 8;
     g_snake.body[0].y = 1;
 
@@ -249,17 +248,14 @@ void snakeUpdate(void)// updates snake data
     //checks if head at same position of food
     u8 foodEaten =(newHead.x == g_food.x && newHead.y == g_food.y);
 
-
     if(checkCollision(newHead))
     {
         g_snake.isDead = 1;
         g_gameOver = 1;
-
         return;
     }
 
     //shifts position data of body parts in the direction of the tail
-
     for(u8 i = g_snake.length - 1; i > 0; i--)
     {
         g_snake.body[i] = g_snake.body[i - 1];
@@ -270,7 +266,6 @@ void snakeUpdate(void)// updates snake data
     if(foodEaten)
     {
         HBuzzer_voidBeep();
-
 
         if(g_snake.length < MAX_SNAKE_LENGTH)
         {
@@ -307,22 +302,22 @@ void snakeDraw(void)
         u8 x = g_snake.body[i].x;
         u8 y = g_snake.body[i].y;
         u8 symbol;
-            if(i == 0)
+
+        if(i == 0)
+        {
+            switch(g_snake.currentDir)
             {
-            	switch(g_snake.currentDir) {
-            	                case DIR_UP:    symbol = HEAD_UP; break;
-            	                case DIR_DOWN:  symbol = HEAD_DOWN; break;
-            	                case DIR_LEFT:  symbol = HEAD_LEFT; break;
-            	                case DIR_RIGHT: symbol = HEAD_RIGHT; break;
-            	            }
+                 case DIR_UP:    symbol = HEAD_UP; break;
+            	 case DIR_DOWN:  symbol = HEAD_DOWN; break;
+            	 case DIR_LEFT:  symbol = HEAD_LEFT; break;
+            	 case DIR_RIGHT: symbol = HEAD_RIGHT; break;
+            }
                 g_displayBuffer[y][x] = symbol;
-            }
-
-            else
-            {
-                g_displayBuffer[y][x] = SOLID_BLOCK;
-            }
-
+        }
+        else
+        {
+             g_displayBuffer[y][x] = SOLID_BLOCK;
+        }
     }
 
         g_displayBuffer[g_food.y][g_food.x] = DIAMOND;
@@ -337,7 +332,6 @@ void snakeDraw(void)
             HLCD_voidSendData(g_displayBuffer[row][col]);
         }
     }
-
 
     // Keep displaying the current score
     SevenSegment_DisplayNumber((u8)g_snake.score);

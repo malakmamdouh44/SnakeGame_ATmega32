@@ -173,14 +173,14 @@ void HLCD_voidDisplayNumberSigned(s32 A_s32Number)
     HLCD_voidDisplayNumberUnsigned((u32)A_s32Number);
 }
 
-void HLCD_voidSendSpecialCharacter(u8 *A_pu8PatternArr, u8 A_u8PatternNumber, LCD_ROWS A_LcdRowNo, LCD_COLS A_LcdColNo)
+void HLCD_voidSendSpecialCharacter(u8 *A_pu8PatternArr, u8 A_u8PatternNumber)
 {
     u8 local_u8CGRamAddress;
 
     // Calculate CGRAM Address = Pattern No. * 8
     local_u8CGRamAddress = A_u8PatternNumber * 8;
 
-    // Data sheet says that bit 6 must be high
+    // bit 6 must be high as it selects CGRAM to receive the next command
     SET_BIT(local_u8CGRamAddress, 6);
 
     // Send CGRAM Write Command
@@ -190,9 +190,6 @@ void HLCD_voidSendSpecialCharacter(u8 *A_pu8PatternArr, u8 A_u8PatternNumber, LC
     {
         HLCD_voidSendData(A_pu8PatternArr[i]);
     }
-
-    // Send go to position Command to the DDRAM
-    HLCD_voidGoToPos(A_LcdRowNo, A_LcdColNo);
 
 }
 
@@ -272,11 +269,11 @@ void HLCD_voidCreateCustomCharacters(void)
        };
 
     // Store in CGRAM (positions 0-5)
-    HLCD_voidSendSpecialCharacter(solidBlock, 0, ROW1, col1);
-    HLCD_voidSendSpecialCharacter(diamond, 1, ROW1, col1);
-    HLCD_voidSendSpecialCharacter(headRight, 2, ROW1, col1);
-    HLCD_voidSendSpecialCharacter(headLeft, 3, ROW1, col1);
-    HLCD_voidSendSpecialCharacter(headUp, 4, ROW1, col1);
-    HLCD_voidSendSpecialCharacter(headDown, 5, ROW1, col1);
+    HLCD_voidSendSpecialCharacter(solidBlock, 0);
+    HLCD_voidSendSpecialCharacter(diamond, 1);
+    HLCD_voidSendSpecialCharacter(headRight, 2);
+    HLCD_voidSendSpecialCharacter(headLeft, 3);
+    HLCD_voidSendSpecialCharacter(headUp, 4);
+    HLCD_voidSendSpecialCharacter(headDown, 5);
 
 }
