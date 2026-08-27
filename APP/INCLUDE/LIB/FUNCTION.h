@@ -30,9 +30,14 @@
 #define SEGMENT_PORT PORTB
 
 #define MAX_SNAKE_LENGTH     50
-#define FOOD_CHAR            '*'
-#define SNAKE_HEAD_CHAR      '$'
-#define SNAKE_BODY_CHAR      's'
+
+
+#define SOLID_BLOCK         0   // Full block
+#define DIAMOND             1   // Diamond shape
+#define HEAD_RIGHT          2   // Snake head right
+#define HEAD_LEFT           3   // Snake head left
+#define HEAD_UP             4   // Snake head up
+#define HEAD_DOWN           5   // Snake head down
 
 
 // Macros for reading button states

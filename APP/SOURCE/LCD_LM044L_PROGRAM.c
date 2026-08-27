@@ -195,5 +195,95 @@ void HLCD_voidSendSpecialCharacter(u8 *A_pu8PatternArr, u8 A_u8PatternNumber, LC
     HLCD_voidGoToPos(A_LcdRowNo, A_LcdColNo);
 
     // Display pattern
-    HLCD_voidSendData(A_u8PatternNumber);
+}
+
+/*
+ * LCD_LM044L_PROGRAM.c
+ * Add this function to create custom characters
+ */
+
+void HLCD_voidCreateCustomCharacters(void)
+{
+    // Custom Character 0: Solid Block (Full)
+    u8 solidBlock[8] = {
+    		0b11111,
+		0b11111,
+        0b11111,
+        0b11111,
+        0b11111,
+        0b11111,
+		0b11111,
+		0b11111
+    };
+
+    // Custom Character 1: Diamond Shape
+    u8 diamond[8] = {
+    	0b00000,
+        0b00100,
+        0b01110,
+        0b11111,
+        0b01110,
+        0b00100,
+        0b00000,
+        0b00000
+
+    };
+
+    // Custom Character 2: Snake Head (Right)
+       u8 headRight[8] = {
+           0b10000,
+           0b11100,
+           0b11110,
+           0b11111,
+           0b11110,
+           0b11100,
+           0b11000,
+           0b10000
+       };
+
+       // Custom Character 3: Snake Head (Left)
+       u8 headLeft[8] = {
+           0b00011,
+           0b00111,
+           0b01111,
+           0b11111,
+           0b01111,
+           0b00111,
+           0b00011,
+           0b00001
+       };
+
+       // Custom Character 4: Snake Head (Up)
+       u8 headUp[8] = {
+           0b00000,
+           0b00000,
+           0b00000,
+           0b00000,
+           0b00000,
+		   0b00100,
+		   0b01110,
+		   0b11111
+       };
+
+       // Custom Character 5: Snake Head (Down)
+       u8 headDown[8] = {
+           0b11111,
+           0b01110,
+           0b00100,
+           0b00000,
+           0b00000,
+           0b00000,
+           0b00000,
+           0b00000
+
+       };
+
+    // Store in CGRAM (positions 0-7)
+    HLCD_voidSendSpecialCharacter(solidBlock, 0, ROW1, col1);
+    HLCD_voidSendSpecialCharacter(diamond, 1, ROW1, col1);
+    HLCD_voidSendSpecialCharacter(headRight, 2, ROW1, col1);
+    HLCD_voidSendSpecialCharacter(headLeft, 3, ROW1, col1);
+    HLCD_voidSendSpecialCharacter(headUp, 4, ROW1, col1);
+    HLCD_voidSendSpecialCharacter(headDown, 5, ROW1, col1);
+
 }

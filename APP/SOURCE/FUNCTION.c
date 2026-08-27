@@ -33,6 +33,7 @@ void gameInit(void)//sets values & directions of ports and pins
     HBuzzer_voidInit();
 
     SevenSegment_Init();
+    HLCD_voidCreateCustomCharacters();
 
     MDIO_voidSetPinValue(BUTTON_PORT, MOVE_UP, DIO_HIGH);
     MDIO_voidSetPinValue(BUTTON_PORT, MOVE_DOWN, DIO_HIGH);
@@ -305,20 +306,26 @@ void snakeDraw(void)
     {
         u8 x = g_snake.body[i].x;
         u8 y = g_snake.body[i].y;
-
+        u8 symbol;
             if(i == 0)
             {
-                g_displayBuffer[y][x] = SNAKE_HEAD_CHAR;
+            	switch(g_snake.currentDir) {
+            	                case DIR_UP:    symbol = HEAD_UP; break;
+            	                case DIR_DOWN:  symbol = HEAD_DOWN; break;
+            	                case DIR_LEFT:  symbol = HEAD_LEFT; break;
+            	                case DIR_RIGHT: symbol = HEAD_RIGHT; break;
+            	            }
+                g_displayBuffer[y][x] = symbol;
             }
 
             else
             {
-                g_displayBuffer[y][x] = SNAKE_BODY_CHAR;
+                g_displayBuffer[y][x] = SOLID_BLOCK;
             }
 
     }
 
-        g_displayBuffer[g_food.y][g_food.x] = FOOD_CHAR;
+        g_displayBuffer[g_food.y][g_food.x] = DIAMOND;
 
         //send data to LCD
     for(u8 row = 0; row < 4; row++)
