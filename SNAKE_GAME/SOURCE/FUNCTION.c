@@ -30,6 +30,8 @@ void gameInit()
 
     SevenSegment_Init();
     SevenSegment_DisplayNumber(0);
+        HBuzzer_voidInit();
+
 
     MDIO_voidSetPinValue(BUTTON_PORT, MOVE_UP, DIO_HIGH);
     MDIO_voidSetPinValue(BUTTON_PORT, MOVE_DOWN, DIO_HIGH);
@@ -190,6 +192,9 @@ void snakeUpdate(void)
     g_snake.body[0] = newHead;
 
     if(foodEaten) {
+        HBuzzer_voidBeep();
+
+        
         if(g_snake.length < MAX_SNAKE_LENGTH) {
             g_snake.length++;
             g_snake.body[g_snake.length - 1] = g_snake.body[g_snake.length - 2];
@@ -235,6 +240,17 @@ void snakeDraw(void)
 
 void gameOverScreen(void)
 {
+
+    
+    HBuzzer_voidBeep();
+
+    _delay_ms(1000);
+
+    HBuzzer_voidBeep();
+
+    _delay_ms(1000);
+
+    
     HLCD_voidClearDisplay();
 
     HLCD_voidSendStringLine("    GAME OVER!    ", ROW1);
@@ -249,6 +265,16 @@ void gameOverScreen(void)
 
 void startScreen(void)
 {
+
+     HBuzzer_voidBeep();
+
+    _delay_ms(1000);
+
+    HBuzzer_voidBeep();
+
+    _delay_ms(1000);
+
+    
     HLCD_voidClearDisplay();
     HLCD_voidSendStringLine("                    ", ROW1);
     HLCD_voidSendStringLine("      SNAKE GAME    ", ROW2);
